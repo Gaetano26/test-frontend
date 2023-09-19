@@ -1,0 +1,52 @@
+<template>
+<nav class="d-flex justify-content-between  px-3 alt">
+    <div class="cont-logo d-flex align-items-center pb-1"><img class="img-fluid pb-1" src="/public/img/logo_transparent.png" alt=""></div>
+     <div class="d-flex gap-4 align-items-center">
+         <div><i class="fas fa-shopping-cart text-white">2</i></div>
+         <div><a href="https://www.tuosito.com" class="btn orange text-white">Vai al Sito</a>
+</div>
+     </div>
+   
+</nav>
+</template>
+   
+   <script>
+   
+   
+   
+   export default {
+     components: {
+     
+   },
+     data () {
+         
+   
+         return {}
+     }
+   }    
+   </script>
+   
+   <style lang="scss" scoped>
+
+   nav {
+    background-color: #007BFF;
+    border: none;
+    overflow-y: hidden;
+   }
+
+   .orange {
+    background-color: #FFA500;
+    border-color: white;
+   }
+   
+   .cont-logo  {
+         width: 140px;
+         height: 90px;
+   }
+
+   .alt {
+    height: 80px;
+    
+   }
+   
+   </style>
