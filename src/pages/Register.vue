@@ -1,5 +1,5 @@
 <template>
-    <section class="d-flex justify-content-center pt-5">
+    <section class="d-flex align-items-center pt-5">
       <div class="container">
         <div class="row row-cols-lg-2">
           <div class="col">
@@ -9,26 +9,26 @@
             <h1 class="text-center">Modulo di Registrazione</h1>
             <h2 class="pt-3">Dati Personali</h2>
             <div>
-              <form @submit.prevent="submitForm">
+              <form @submit.prevent="submitForm()">
                 <div class="d-flex flex-column pt-2">
-                  <label for="nome">Nome</label>
+                  <label for="name">Nome</label>
                   <input type="text" id="name" placeholder="Es. Osvaldo" required v-model="name">
                   <p class="text-danger" v-if="message.name">{{ message.name }}</p>
                 </div>
                 <div class="d-flex flex-column pt-2">
-                  <label for="cognome">Cognome</label>
+                  <label for="surname">Cognome</label>
                   <input type="text" id="surname" placeholder="Es. Rossi" required v-model="surname">
-                  <p class="text-danger" v-if="message.name">{{ message.surname }}</p>
+                  <p class="text-danger" v-if="message.surname">{{ message.surname }}</p>
                 </div>
                 <div class="d-flex flex-column pt-2">
-                  <label for="Email">Email</label>
+                  <label for="email">Email</label>
                   <input type="email" id="email" placeholder="Es. osvaldo@mail.com" required v-model="email">
-                  <p class="text-danger" v-if="message.name">{{ message.email }}</p>
+                  <p class="text-danger" v-if="message.email">{{ message.email }}</p>
                 </div>
                 <div class="d-flex flex-column pt-2">
-                  <label for="Password">Password</label>
+                  <label for="password">Password</label>
                   <input type="password" id="password" placeholder="Es.Password" required v-model="password">
-                  <p class="text-danger" v-if="message.name">{{ message.password }}</p>
+                  <p class="text-danger" v-if="message.password">{{ message.password }}</p>
                 </div>
                 <div class="d-flex gap-3 mt-5" >
                     <button type="submit" class="btn orange  text-white">Invia</button>
@@ -45,6 +45,9 @@
   </template>
   
   <script>
+import axios from 'axios';
+import { store } from '../store'
+import router from '../router'
   export default {
     data() {
       return {
@@ -52,19 +55,56 @@
         surname: '',
         email: '',
         password: '',
-        message: {} // Suppongo che tu utilizzi message per la gestione degli errori
+        message: {} ,
+        store
       };
     },
     methods: {
-      submitForm() {
-        // Gestisci l'invio del modulo qui
-        // Esegui la validazione dei campi, invia una richiesta HTTP, ecc.
+        submitForm() {
+     
+
+      axios.post(`${store.apiURL}/register`, {
+                name: this.name,
+                surname: this.surname,
+                email: this.email,
+                password: this.password,
+      })
+        .then((res) => {
+            router.replace('/login')
+            store.isReg = true;
+             
+        
+        })
+        .catch(error => {
+          const messages = error.response.data.errors;
+
+          if (messages.name) {
+            this.message.name = messages.name[0];
+          }
+          if (messages.surname) {
+            this.message.surname = messages.surname[0];
+          }
+          if (messages.email) {
+            this.message.email = messages.email[0];
+          }
+          if (messages.password) {
+            this.message.password = messages.password[0];
+          }
+
+          
+        });
+
+        },
       }
-    }
-  };
+    };
+  
   </script>
   
   <style lang="scss" scoped>
+  section {
+    width: 100%;
+    height: 100vh;
+  }
   img {
     width: 500px;
     height: 500px;

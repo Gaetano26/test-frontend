@@ -1,5 +1,5 @@
 <template>
-    <section class="d-flex justify-content-center pt-5">
+    <section class="d-flex align-items-center pt-5">
       <div class="container">
         <div class="row row-cols-lg-2">
           <div class="col">
@@ -9,16 +9,16 @@
             <h1 class="text-center">Login</h1>
             <h2 class="pt-3">Dati Personali</h2>
             <div>
-              <form @submit.prevent="submitForm">
+              <form @submit.prevent=" submitForm()"  action="#">
                 <div class="d-flex flex-column pt-2">
-                  <label for="Email">Email</label>
+                  <label for="email">Email</label>
                   <input type="email" id="email" placeholder="Es. osvaldo@mail.com" required v-model="email">
-                  <p class="text-danger" v-if="message.name">{{ message.email }}</p>
+                  <p class="text-danger" v-if="message.email">{{ message.email }}</p>
                 </div>
                 <div class="d-flex flex-column pt-2">
-                  <label for="Password">Password</label>
+                  <label for="password">Password</label>
                   <input type="password" id="password" placeholder="Es.Password" required v-model="password">
-                  <p class="text-danger" v-if="message.name">{{ message.password }}</p>
+                  <p class="text-danger" v-if="message.password">{{ message.password }}</p>
                 </div>
                 <div class="d-flex gap-3 mt-5" >
                     <button type="submit" class="btn orange  text-white">Invia</button>
@@ -35,24 +35,51 @@
   </template>
   
   <script>
+  import { store } from '../store';
+  import axios from 'axios';
+  import router from '../router'
   export default {
     data() {
       return {
         email: '',
         password: '',
-        message: {} // Suppongo che tu utilizzi message per la gestione degli errori
+        message: {} ,
+        store
       };
     },
     methods: {
-      submitForm() {
-        // Gestisci l'invio del modulo qui
-        // Esegui la validazione dei campi, invia una richiesta HTTP, ecc.
-      }
+    },
+    submitForm() {
+  axios.post(`${store.apiURL}/login`, {
+    email: this.email,
+    password: this.password,
+  })
+  .then((res) => {
+    router.replace('/');
+    store.isAuth = true;
+  })
+  .catch(error => {
+    const messages = error.response.data.errors;
+
+    if (messages.email) {
+      this.message.email = messages.email[0];
     }
-  };
+    if (messages.password) {
+      this.message.password = messages.password[0];
+    }
+  });
+}
+
+    }
+
+
   </script>
   
   <style lang="scss" scoped>
+  section {
+    width: 100%;
+    height: 100vh;
+  }
   img {
     width: 500px;
     height: 500px;

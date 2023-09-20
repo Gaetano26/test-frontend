@@ -8,6 +8,7 @@
           <h3 style="margin: 0;">{{ product.name }}</h3>
           <h6 class="py-3" style="margin: 0;">Prezzo: {{ product.price }}</h6>
           <h6 class="py-2" style="margin: 0;">Quantita: {{ product.weight }}</h6>
+          
         </div>
       </div>
     </div>
