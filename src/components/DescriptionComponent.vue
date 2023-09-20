@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row ">
-            <div class="col col-sm-12 pt-5 mt-5">
+            <div class="col  pt-5 mt-5">
                  <h2 class="text-white pt-5">Vini Preziosi</h2>
                  <p class="text-white">Scoprite i segreti dei vini siciliani. Dalle note fruttate del Nero d'Avola al raffinato Etna Rosso, il nostro assortimento vi conquisterà.</p>
             </div>

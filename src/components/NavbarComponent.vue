@@ -1,10 +1,9 @@
 <template>
 <nav class="d-flex justify-content-between  px-3 alt">
-    <div class="cont-logo d-flex align-items-center pb-1"><img class="img-fluid pb-1" src="/public/img/logo_transparent.png" alt=""></div>
+    <div class="cont-logo d-flex align-items-center pb-1"><router-link to="/"><img class="img-fluid pb-1" src="/public/img/logo_transparent.png" alt=""></router-link></div>
      <div class="d-flex gap-4 align-items-center">
          <div><i class="fas fa-shopping-cart text-white">2</i></div>
-         <div><a href="https://www.tuosito.com" class="btn orange text-white">Vai al Sito</a>
-</div>
+         <div><router-link to="/register"><a href="/" class="btn orange text-white">registrati</a></router-link></div>
      </div>
    
 </nav>
