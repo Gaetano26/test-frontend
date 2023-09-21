@@ -4,7 +4,7 @@
             <div class="col py-5 text-center">
                 <h2 class="pt-5 pb-3 text-white">Registrati adesso per ordinare i nostri prodotti.</h2>
                 <i class="fas fa-arrow-down fs-2 text-white"></i>
-                <div class="text-center py-4 "><a href="https://www.tuosito.com" class="btn blue py-3 px-5 text-white">Registrati</a></div>
+                <div class="text-center py-4 "><router-link to="/register"><a href="https://www.tuosito.com" class="btn blue py-3 px-5 text-white">Registrati</a></router-link></div>
                 <h3><h2 class="text-white">I nostri prodotti portano con sé i colori e i sapori unici della Sicilia.</h2></h3>
             </div>
         </div>

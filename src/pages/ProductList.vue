@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div  v-if="!this.loading" class="container">
     <div class="row row-cols-lg-4">
       <CardComponent  v-for="(product, index) in store.productsList" :key="product.id" :product="product" />
     </div>
@@ -13,18 +13,23 @@
                 </ul>
             </nav>
   </div>
+    <div v-else>
+        <LoaderComponent />
+    </div>
   </template>
   
   <script>
   import { store } from '../store'
   import CardComponent from '../components/CardComponent.vue';
+  import LoaderComponent from '../components/LoaderComponent.vue';
   
   import axios from 'axios';
   
   
   export default {
     components: {
-      CardComponent
+      CardComponent,
+      LoaderComponent
     
   },
     data () {
@@ -34,6 +39,7 @@
           store,
           currentPage: 1,
             lastPage: null,
+            loading : true
         }
     },
     methods: {
