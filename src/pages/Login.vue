@@ -1,12 +1,12 @@
 <template>
-    <section class="d-flex align-items-center pt-5">
-      <div class="container">
+    <section class="d-flex align-items-center">
+      <div class="container-fluid">
         <div class="row row-cols-lg-2">
-          <div class="col">
+          <div class="col d-flex align-items-center justify-content-center">
             <img src="/public/img/logo_transparent.png" alt="">
           </div>
-          <div class="col white">
-            <h1 class="text-center">Login</h1>
+          <div class="col pb-5 d-flex flex-column justify-content-center white">
+            <h1 class="text-center mb-3">Login</h1>
             <h2 class="pt-3">Dati Personali</h2>
             <div>
               <form @submit.prevent=" submitForm()"  action="#">
@@ -48,13 +48,13 @@
       };
     },
     methods: {
-    },
-    submitForm() {
+      submitForm() {
   axios.post(`${store.apiURL}/login`, {
     email: this.email,
     password: this.password,
   })
   .then((res) => {
+    console.log(res);
     router.replace('/');
     store.isAuth = true;
   })
@@ -69,6 +69,8 @@
     }
   });
 }
+    },
+  
 
     }
 
@@ -76,6 +78,15 @@
   </script>
   
   <style lang="scss" scoped>
+    
+    .container-fluid {
+    height: 100vh;
+  }
+
+  .row {
+    
+    height: 100vh;
+  }
   section {
     width: 100%;
     height: 100vh;

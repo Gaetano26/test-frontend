@@ -1,12 +1,12 @@
 <template>
-    <section class="d-flex align-items-center pt-5">
-      <div class="container">
+    <section class="d-flex align-items-center">
+      <div class="container-fluid">
         <div class="row row-cols-lg-2">
-          <div class="col">
+          <div class="col d-flex align-items-center justify-content-center">
             <img src="/public/img/logo_transparent.png" alt="">
           </div>
-          <div class="col white">
-            <h1 class="text-center">Modulo di Registrazione</h1>
+          <div class="col d-flex flex-column justify-content-center white">
+            <h1 class="text-center pb-4">Modulo di Registrazione</h1>
             <h2 class="pt-3">Dati Personali</h2>
             <div>
               <form @submit.prevent="submitForm()">
@@ -101,6 +101,15 @@ import router from '../router'
   </script>
   
   <style lang="scss" scoped>
+  .container-fluid {
+    height: 100vh;
+  }
+
+  .row {
+    
+    height: 100vh;
+  }
+  
   section {
     width: 100%;
     height: 100vh;
