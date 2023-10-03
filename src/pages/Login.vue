@@ -55,8 +55,10 @@
   })
   .then((res) => {
     console.log(res);
-    router.replace('/');
     store.isAuth = true;
+    store.authUser = res.data.user;
+    router.push('/');
+   
   })
   .catch(error => {
     const messages = error.response.data.errors;
